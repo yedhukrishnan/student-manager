@@ -1,0 +1,21 @@
+.row
+	.col-12
+		h3.header Students
+		table.table
+			thead
+				tr
+					th Name
+					th Roll Number
+					th Admission Number
+					th KTU ID
+			tbody
+				- @students.each do |student|
+					tr
+						td 
+							= student.name 
+						td 
+							= student.roll_no
+						td 
+							= student.admission_no
+						td 
+							= student.ktu_id	
