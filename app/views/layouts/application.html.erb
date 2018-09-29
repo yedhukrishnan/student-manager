@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>StudentManager</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>StudentManager</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-      <a class="navbar-brand" href="#">IP-HUB</a>
-    </nav>
-    <div class="container main">
-      <div class="row">
-        <div class="col-2 sidebar">
-          
-        </div>
-        <div class="col-10">
-          <div class="content">
-            <%= yield %>
-          </div>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    <a class="navbar-brand" href="#">IP-HUB</a>
+  </nav>
+  <% if current_admin.present? %>
+  <div class="container main">
+    <div class="row">
+      <div class="col-2 sidebar">
+        <%= render "pages/sidebar" %>
+      </div>
+      <div class="col-10">
+        <div class="content">
+          <%= yield %>
         </div>
       </div>
     </div>
-    
-  </body>
+  </div>
+  <% else %>
+  <div class="content">
+    <%= yield %>
+  </div>
+  <% end %>
+
+</body>
 </html>

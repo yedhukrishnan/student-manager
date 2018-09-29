@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :students
-  devise_for :admins
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+	get 'pages/home'
+	resources :students
+	resources :subjects
+	devise_for :admins
+
+	devise_scope :admin do
+		root to: "devise/sessions#new"
+	end
 end
