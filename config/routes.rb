@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 	resources :students
 	resources :subjects
 	resources :holidays
+	resources :working_days
+
 	devise_for :admins
 
 	devise_scope :admin do

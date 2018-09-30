@@ -1,0 +1,17 @@
+- flash.each do |key, value|
+  .alert.alert-danger
+  	= value
+
+.row.justify-content-center
+	.col-6
+		h3.header Create Working Day
+		= form_tag :working_days
+			.form-group
+				= label :working_day, :date
+				= text_field :working_day, :date, class: 'form-control datepicker', id: 'datepicker'
+			.form-group
+				= label :working_day, :weekday
+				= text_field :working_day, :weekday, class: 'form-control'
+				small Example: Tuesday
+			.form-grop
+				= submit_tag :submit, value: 'Create', class: 'btn btn-primary'

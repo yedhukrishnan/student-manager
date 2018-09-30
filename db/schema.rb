@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_30_032443) do
+ActiveRecord::Schema.define(version: 2018_09_30_042257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,16 @@ ActiveRecord::Schema.define(version: 2018_09_30_032443) do
     t.index ["admin_id"], name: "index_subjects_on_admin_id"
   end
 
+  create_table "working_days", force: :cascade do |t|
+    t.datetime "date"
+    t.integer "weekday"
+    t.bigint "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_working_days_on_admin_id"
+  end
+
   add_foreign_key "holidays", "admins"
   add_foreign_key "subjects", "admins"
+  add_foreign_key "working_days", "admins"
 end

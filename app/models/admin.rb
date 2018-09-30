@@ -7,4 +7,5 @@ class Admin < ApplicationRecord
   has_many :students
   has_many :subjects
   has_many :holidays
+  has_many :working_days
 end
