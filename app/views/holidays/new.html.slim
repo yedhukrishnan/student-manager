@@ -1,0 +1,16 @@
+- flash.each do |key, value|
+  .alert.alert-danger
+  	= value
+
+.row.justify-content-center
+	.col-6
+		h3.header Create Holiday
+		= form_tag :holidays
+			.form-group
+				= label :holiday, :occasion
+				= text_field :holiday, :occasion, class: 'form-control'
+			.form-group
+				= label :holiday, :date
+				= text_field :holiday, :date, class: 'form-control datepicker', id: 'datepicker'
+			.form-grop
+				= submit_tag :submit, value: 'Create', class: 'btn btn-primary'

@@ -1,0 +1,20 @@
+.row
+	.col-12
+		h3.header Holidays
+		table.table
+			thead
+				tr
+					th Occasion
+					th Date
+					th Week Day
+			tbody
+				- @holidays.each do |holiday|
+					tr
+						td 
+							= holiday.occasion
+						td 
+							= holiday.date.strftime('%B %d, %Y')
+						td
+							= holiday.date.strftime('%A')
+
+		= link_to 'Add a new holiday', new_holiday_url	

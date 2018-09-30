@@ -17,4 +17,5 @@
 //= require popper
 //= require bootstrap
 //= require bootstrap-sprockets
+//= require jquery-ui/widgets/datepicker
 //= require_tree .
