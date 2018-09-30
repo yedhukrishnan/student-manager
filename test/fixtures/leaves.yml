@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reason: MyString
+  date: 2018-09-30 11:54:23
+  weekday: 1
+  student: one
+
+two:
+  reason: MyString
+  date: 2018-09-30 11:54:23
+  weekday: 1
+  student: two

@@ -1,0 +1,23 @@
+- flash.each do |key, value|
+  .alert.alert-danger
+  	= value
+
+.row.justify-content-center
+	.col-6
+		h3.header Create Leave
+		= form_tag :leaves
+			.form-group
+				= label :leave, :student
+				= collection_select :leave, :student_id, @students, :id, :name, {}, { class: "form-control" }
+
+			.form-group
+				= label :leave, :reason
+				= text_field :leave, :reason, class: 'form-control'
+			.form-group
+				= label :leave, :date
+				= text_field :leave, :date, class: 'form-control datepicker', id: 'datepicker'
+				small Format: YYYY/MM/DD 
+				br
+				small If you are adding a weekend, make sure you've added that as a working day first
+			.form-grop
+				= submit_tag :submit, value: 'Create', class: 'btn btn-primary'

@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 	get 'pages/home'
+	
 	resources :students
 	resources :subjects
 	resources :holidays
 	resources :working_days
+	resources :leaves
 
 	devise_for :admins
 

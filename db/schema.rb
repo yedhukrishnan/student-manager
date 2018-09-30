@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_30_042257) do
+ActiveRecord::Schema.define(version: 2018_09_30_062422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 2018_09_30_042257) do
     t.datetime "updated_at", null: false
     t.string "occasion"
     t.index ["admin_id"], name: "index_holidays_on_admin_id"
+  end
+
+  create_table "leaves", force: :cascade do |t|
+    t.string "reason"
+    t.datetime "date"
+    t.integer "weekday"
+    t.bigint "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_leaves_on_student_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -66,6 +76,7 @@ ActiveRecord::Schema.define(version: 2018_09_30_042257) do
   end
 
   add_foreign_key "holidays", "admins"
+  add_foreign_key "leaves", "students"
   add_foreign_key "subjects", "admins"
   add_foreign_key "working_days", "admins"
 end

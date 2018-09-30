@@ -1,0 +1,23 @@
+.row
+	.col-12
+		h3.header Leaves
+		table.table
+			thead
+				tr
+					th Student
+					th Date
+					th Reason
+					th Weekday
+			tbody
+				- @leaves.each do |leave|
+					tr
+						td 
+							= leave.student.name
+						td 
+							= leave.date.strftime('%B %d, %Y')
+						td 
+							= leave.reason
+						td
+							= leave.weekday.humanize
+
+		= link_to 'Add a new leave', new_leave_url	
