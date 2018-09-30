@@ -5,7 +5,7 @@ class TimeTablesController < ApplicationController
 		@subjects = current_admin.subjects
 		@weekdays = WorkingDay.weekdays
 		@time_table = TimeTable.new(table: {
-			monday: { project: 0, seminar: 0, dvp: 2, hpc: 0 },
+			monday: { project: 0, seminar: 0, dvp: 0, hpc: 0 },
 			tuesday: { project: 0, seminar: 0, dvp: 0, hpc: 0 },
 			weekday: { project: 0, seminar: 0, dvp: 0, hpc: 0 },
 			thursday: { project: 0, seminar: 0, dvp: 0, hpc: 0 },
