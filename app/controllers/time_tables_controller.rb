@@ -17,11 +17,11 @@ class TimeTablesController < ApplicationController
 	def create
 		@time_table = TimeTable.new
 		# Close your eyes if you don't wanna see hacks!
-		w = WorkingDay.weekdays.keys
-		s = current_admin.subjects.map(&:name).map(&:downcase)
-		t = time_table_params[:table_string].split
-		z = w.zip(t)
-		@time_table.table = Hash[z.collect { |k, v| [k, Hash[s.zip(v.split(',').map(&:to_i))]] }]
+		weekdays = WorkingDay.weekdays.keys
+		subjects = current_admin.subjects.map(&:name).map(&:downcase)
+		tstring = time_table_params[:table_string].split
+		zipped = weekdays.zip(tstring)
+		@time_table.table = Hash[zipped.collect { |k, v| [k, Hash[subjects.zip(v.split(',').map(&:to_i))]] }]
 		@time_table.admin = current_admin
 		if @time_table.save
 			render :index
