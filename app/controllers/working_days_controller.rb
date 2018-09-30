@@ -8,7 +8,6 @@ class WorkingDaysController < ApplicationController
 
 	def create
 		@working_day = WorkingDay.new(working_day_params)
-        @working_day.weekday = WorkingDay.weekdays[params[:working_day][:weekday].to_sym]
 		@working_day.admin = current_admin
 		if @working_day.save
             # flash[:success] = I18n.t("article.create_success_message")
@@ -29,6 +28,6 @@ class WorkingDaysController < ApplicationController
     private
 
     def working_day_params
-    	params.require(:working_day).permit(:date, :working_day)
-    end
+    	params.require(:working_day).permit(:date, :weekday)
+    end 
 end
