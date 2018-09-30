@@ -1,0 +1,25 @@
+- flash.each do |key, value|
+  .alert.alert-danger
+  	= value
+
+.row.justify-content-center
+	.col-12
+		h3.header Attendance Details
+		- attendance = @attendances.first
+		p From #{attendance.start_date.strftime('%B %d, %Y')} to #{attendance.end_date.strftime('%B %d, %Y')}
+		table.table
+			thead
+				tr
+					th Student
+					- @subjects.each do |subject| 
+						th
+							= subject.name
+			tbody
+				- @attendances.each do |attendance|
+					tr
+						td
+							= attendance.student.name
+						- attendance.percentage.each_pair do |subject, percentage|
+							td
+								= "#{percentage}%"
+	

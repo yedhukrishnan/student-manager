@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 	get 'pages/home'
+
+	get 'attendance/new'
+	get 'attendance/index'
 	
 	resources :students
 	resources :subjects
@@ -7,6 +10,7 @@ Rails.application.routes.draw do
 	resources :working_days
 	resources :leaves
 	resources :time_tables
+	# resources :attendance
 
 	devise_for :admins
 

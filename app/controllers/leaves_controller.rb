@@ -29,7 +29,7 @@ class LeavesController < ApplicationController
     end
 
     def index
-    	@leaves = current_admin.students.first.leaves.preload(:student)
+    	@leaves = current_admin.students.last.leaves.preload(:student)
     end
 
     def delete
