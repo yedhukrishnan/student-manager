@@ -5,19 +5,24 @@
 .row.justify-content-center
 	.col-12
 		h3.header Time Table
-		table.table
-			thead
-				tr
-					th Day of Week
-					- @subjects.each do |subject| 
-						th
-							= subject
-			tbody
-				- @time_table.each_pair do |day, value|
+		- if @time_table.present?
+			table.table
+				thead
 					tr
-						td
-							= day.capitalize
-						- value.each_pair do |subject, hours|
+						th Day of Week
+						- @subjects.each do |subject| 
+							th
+								= subject
+				tbody
+					- @time_table.table.each_pair do |day, value|
+						tr
 							td
-								= hours
+								= day.capitalize
+							- value.each_pair do |subject, hours|
+								td
+									= hours
+		- else
+			.btn.btn-primary 
+				= link_to 'Create Time Table', new_time_table_url, class: 'btn'
+
 	

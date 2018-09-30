@@ -31,7 +31,7 @@ class TimeTablesController < ApplicationController
 	def index
 		@subjects = current_admin.subjects.map(&:name)
 		@weekdays = WorkingDay.weekdays.keys.map(&:to_s)
-		@time_table = current_admin.time_table.table
+		@time_table = current_admin.time_table
 		puts @subjects
 		puts @weekdays
 	end
