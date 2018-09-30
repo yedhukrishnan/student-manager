@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 	resources :holidays
 	resources :working_days
 	resources :leaves
+	resources :time_tables
 
 	devise_for :admins
 

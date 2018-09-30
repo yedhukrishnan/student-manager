@@ -1,0 +1,36 @@
+- flash.each do |key, value|
+  .alert.alert-danger
+  	= value
+
+.row.justify-content-center
+	.col-12
+		h3.header Time Table
+		p Enter the number of hours the subject has in each day
+
+		= form_tag :time_tables
+			.form-group
+				= text_area :time_table, :table_string
+			.form-group
+				= submit_tag :submit, value: 'Create', class: 'btn btn-primary'
+
+
+		= form_with(model: @time_table, local: true) do |form| 
+			table.table
+				thead
+					tr
+						th Day of Week
+						- @subjects.each do |subject| 
+							th
+								= subject.name
+				tbody
+					- @weekdays.each do |weekday|
+						tr
+							td
+								= weekday[0].humanize
+							- @subjects.each do |subject| 
+								td
+									- day = weekday[0].to_s
+									= text_field_tag "@time_table[table][#{day}][dvp]", @time_table.table['monday']['dvp']
+			.form-group
+					= submit_tag :submit, value: 'Create', class: 'btn btn-primary'
+	

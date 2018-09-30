@@ -1,0 +1,23 @@
+- flash.each do |key, value|
+  .alert.alert-danger
+  	= value
+
+.row.justify-content-center
+	.col-12
+		h3.header Time Table
+		table.table
+			thead
+				tr
+					th Day of Week
+					- @subjects.each do |subject| 
+						th
+							= subject
+			tbody
+				- @time_table.each_pair do |day, value|
+					tr
+						td
+							= day.capitalize
+						- value.each_pair do |subject, hours|
+							td
+								= hours
+	

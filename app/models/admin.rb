@@ -8,4 +8,5 @@ class Admin < ApplicationRecord
   has_many :subjects
   has_many :holidays
   has_many :working_days
+  has_one :time_table
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_30_062422) do
+ActiveRecord::Schema.define(version: 2018_09_30_081854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,14 @@ ActiveRecord::Schema.define(version: 2018_09_30_062422) do
     t.index ["admin_id"], name: "index_subjects_on_admin_id"
   end
 
+  create_table "time_tables", force: :cascade do |t|
+    t.json "table"
+    t.bigint "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_time_tables_on_admin_id"
+  end
+
   create_table "working_days", force: :cascade do |t|
     t.datetime "date"
     t.integer "weekday"
@@ -78,5 +86,6 @@ ActiveRecord::Schema.define(version: 2018_09_30_062422) do
   add_foreign_key "holidays", "admins"
   add_foreign_key "leaves", "students"
   add_foreign_key "subjects", "admins"
+  add_foreign_key "time_tables", "admins"
   add_foreign_key "working_days", "admins"
 end
