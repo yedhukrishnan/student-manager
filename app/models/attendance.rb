@@ -12,8 +12,12 @@ class Attendance < ApplicationRecord
 					.collect { |d| d.strftime('%A').downcase }
 		weekdays = (self.start_date.to_date .. self.end_date.to_date).select(&:on_weekday?).collect { |d| d.strftime('%A').downcase }
 		subjects = admin.subjects.map(&:name).collect { |s| s.downcase }
-		extra_working_days = admin.working_days.map(&:weekday).map(&:to_s)
-		leaves = self.student.leaves.map(&:date).collect { |d| d.strftime('%A').downcase }
+		extra_working_days = admin.working_days
+					.where(date: [self.start_date .. self.end_date])
+					.map(&:weekday).map(&:to_s)
+		leaves = self.student.leaves
+					.where(date: [self.start_date .. self.end_date])
+					.map(&:date).collect { |d| d.strftime('%A').downcase }
 		table = admin.time_table.table
 
 		self.total_hours = total_hours_in_given_range table, subjects, weekdays, holidays, extra_working_days
