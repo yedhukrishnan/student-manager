@@ -20,8 +20,15 @@ class HolidaysController < ApplicationController
 		@holidays = current_admin.holidays
 	end
 
-	def delete
-	end
+    def destroy
+        holiday = Holiday.find(params[:id])
+        if holiday.admin == current_admin && holiday.destroy
+            flash[:success] ='Holiday deleted successfully'
+        else
+            flash[:danger] ='Holiday deletion failed'
+        end
+        redirect_to holidays_url
+    end
 
 	private
 

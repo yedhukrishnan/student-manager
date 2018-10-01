@@ -11,7 +11,7 @@ class LeavesController < ApplicationController
         if date.on_weekday?
             @leaves.weekday = date.strftime('%A').downcase.to_sym
         else
-            working_days = WorkingDay.where(date: date)
+            leaves = WorkingDay.where(date: date)
             if working_days.empty?
                 flash[:error] = 'Given day is added as working day'
                 render :new
@@ -20,7 +20,6 @@ class LeavesController < ApplicationController
             @leaves.weekday = working_days.first.weekday
         end
 		if @leaves.save
-            # flash[:success] = I18n.t("article.create_success_message")
             redirect_to leaves_path
         else
         	flash[:error] = @leaves.errors.full_messages
@@ -32,7 +31,14 @@ class LeavesController < ApplicationController
     	@leaves = current_admin.students.last.leaves.preload(:student)
     end
 
-    def delete
+    def destroy
+        leave = Leave.find(params[:id])
+        if leave.admin == current_admin && leave.destroy
+            flash[:success] ='Leave deleted successfully'
+        else
+            flash[:danger] ='Leave deletion failed'
+        end
+        redirect_to leaves_url
     end
 
     private

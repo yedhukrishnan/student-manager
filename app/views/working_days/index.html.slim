@@ -1,3 +1,6 @@
+- flash.each do |key, value|
+  div[class="alert alert-#{key}"] = value
+  	
 .row
 	.col-12
 		h3.header Working Days
@@ -6,12 +9,12 @@
 				tr
 					th Date
 					th Weekday
+					th style="width: 5%"
 			tbody
 				- @working_days.each do |working_day|
 					tr
-						td 
-							= working_day.date.strftime('%B %d, %Y')
-						td
-							= working_day.weekday.humanize
+						td = working_day.date.strftime('%B %d, %Y')
+						td = working_day.weekday.humanize
+						td = link_to "✖", working_day, data: { method: 'delete', confirm: 'Are you sure?' }
 
 		= link_to 'Add a new working day', new_working_day_url	

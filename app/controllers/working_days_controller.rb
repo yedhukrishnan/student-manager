@@ -10,7 +10,6 @@ class WorkingDaysController < ApplicationController
 		@working_day = WorkingDay.new(working_day_params)
 		@working_day.admin = current_admin
 		if @working_day.save
-            # flash[:success] = I18n.t("article.create_success_message")
             redirect_to working_days_path
         else
         	flash[:error] = @working_day.errors.full_messages
@@ -22,7 +21,14 @@ class WorkingDaysController < ApplicationController
     	@working_days = current_admin.working_days
     end
 
-    def delete
+    def destroy
+        working_day = WorkingDay.find(params[:id])
+        if working_day.admin == current_admin && working_day.destroy
+            flash[:success] ='Working day deleted successfully'
+        else
+            flash[:danger] ='Working day deletion failed'
+        end
+        redirect_to working_days_url
     end
 
     private

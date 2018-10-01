@@ -5,7 +5,6 @@ class StudentsController < ApplicationController
         @student = Student.new(student_params)
         @student.admin = current_admin
         if @student.save
-            # flash[:success] = I18n.t("article.create_success_message")
             redirect_to students_path
         else
             flash[:error] = @student.errors.full_messages
@@ -19,7 +18,14 @@ class StudentsController < ApplicationController
     def edit
     end
 
-    def delete
+    def destroy
+        student = Student.find(params[:id])
+        if student.admin == current_admin && student.destroy
+            flash[:success] ='Student deleted successfully'
+        else
+            flash[:danger] ='Student deletion failed'
+        end
+        redirect_to students_url
     end
 
     def index

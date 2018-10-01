@@ -1,3 +1,6 @@
+- flash.each do |key, value|
+  div[class="alert alert-#{key}"] = value
+
 .row
 	.col-12
 		h3.header Subjects
@@ -6,11 +9,12 @@
 				tr
 					th Name
 					th Code
+					th style="width: 5%"
 			tbody
 				- @subjects.each do |subject|
 					tr
-						td 
-							= subject.name 
-						td 
-							= subject.code
+						td = subject.name 
+						td = subject.code
+						td = link_to "✖", subject, data: { method: 'delete', confirm: 'Are you sure?' }
+		
 		= link_to 'Add a new subject', new_subject_url	

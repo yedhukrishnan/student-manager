@@ -1,3 +1,6 @@
+- flash.each do |key, value|
+  div[class="alert alert-#{key}"] = value
+  	
 .row
 	.col-12
 		h3.header Students
@@ -8,16 +11,14 @@
 					th Roll Number
 					th Admission Number
 					th KTU ID
+					th style="width: 5%"
 			tbody
 				- @students.each do |student|
 					tr
-						td 
-							= student.name 
-						td 
-							= student.roll_no
-						td 
-							= student.admission_no
-						td 
-							= student.ktu_id
+						td = student.name 
+						td = student.roll_no
+						td = student.admission_no
+						td = student.ktu_id
+						td = link_to "✖", student, data: { method: 'delete', confirm: 'Are you sure?' }
 
 		= link_to 'Add a new student', new_student_url	

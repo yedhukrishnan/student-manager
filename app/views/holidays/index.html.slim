@@ -1,3 +1,6 @@
+- flash.each do |key, value|
+  div[class="alert alert-#{key}"] = value
+  	
 .row
 	.col-12
 		h3.header Holidays
@@ -7,14 +10,13 @@
 					th Occasion
 					th Date
 					th Week Day
+					th style="width: 5%"
 			tbody
 				- @holidays.each do |holiday|
 					tr
-						td 
-							= holiday.occasion
-						td 
-							= holiday.date.strftime('%B %d, %Y')
-						td
-							= holiday.date.strftime('%A')
+						td = holiday.occasion
+						td = holiday.date.strftime('%B %d, %Y')
+						td = holiday.date.strftime('%A')
+						td = link_to "✖", holiday, data: { method: 'delete', confirm: 'Are you sure?' }
 
 		= link_to 'Add a new holiday', new_holiday_url	
