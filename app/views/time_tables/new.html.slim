@@ -21,16 +21,13 @@
 						th Day of Week
 						- @subjects.each do |subject| 
 							th
-								= subject.name
+								= subject
 				tbody
-					- @weekdays.each do |weekday|
+					- @time_table.table.each_pair do |day, value|
 						tr
 							td
-								= weekday[0].humanize
-							- @subjects.each do |subject| 
+								= day.capitalize
+							- value.each_pair do |subject, hours|
 								td
-									- day = weekday[0].to_s
-									= text_field_tag "@time_table[table][#{day}][dvp]", @time_table.table['monday']['dvp']
-			.form-group
-					= submit_tag :submit, value: 'Create', class: 'btn btn-primary'
+									= hours
 	

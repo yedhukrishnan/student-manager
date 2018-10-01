@@ -2,15 +2,10 @@ class TimeTablesController < ApplicationController
 	before_action :authenticate_admin!
 
 	def new
-		@subjects = current_admin.subjects
-		@weekdays = WorkingDay.weekdays
-		@time_table = TimeTable.new(table: {
-			monday: { project: 0, seminar: 0, dvp: 0, hpc: 0 },
-			tuesday: { project: 0, seminar: 0, dvp: 0, hpc: 0 },
-			weekday: { project: 0, seminar: 0, dvp: 0, hpc: 0 },
-			thursday: { project: 0, seminar: 0, dvp: 0, hpc: 0 },
-			friday: { project: 0, seminar: 0, dvp: 0, hpc: 0 }
-		})
+		@weekdays = WorkingDay.weekdays.keys
+		@subjects = current_admin.subjects.map(&:name)
+		zipped = @weekdays.zip(Array.new(@subjects.size, 0))
+		@time_table = TimeTable.new(table: Hash[zipped.collect { |k, v| [k, Hash[@subjects.zip(Array.new(@subjects.size, 0))]] }])
 		puts @time_table.table['monday']['dvp']
 	end
 
@@ -24,7 +19,7 @@ class TimeTablesController < ApplicationController
 		@time_table.table = Hash[zipped.collect { |k, v| [k, Hash[subjects.zip(v.split(',').map(&:to_i))]] }]
 		@time_table.admin = current_admin
 		if @time_table.save
-			render :index
+			redirect_to time_tables_url
 		end
 	end
 
