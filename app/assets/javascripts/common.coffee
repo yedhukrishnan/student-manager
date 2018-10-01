@@ -1,5 +1,5 @@
 $(document).on "turbolinks:load", -> 
-  $('#datepicker').datepicker({
+  $('.datepicker').datepicker({
   		dateFormat: "yy/mm/dd"
   	})
   return
