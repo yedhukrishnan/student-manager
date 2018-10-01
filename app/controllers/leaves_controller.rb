@@ -28,7 +28,13 @@ class LeavesController < ApplicationController
     end
 
     def index
-    	@leaves = current_admin.students.last.leaves.preload(:student)
+        @students = current_admin.students
+        @current_student = @students.first
+        if params[:student]
+            student_id = params[:student][:student_id]
+            @current_student = @students.find(student_id)
+        end
+        @leaves = @current_student.leaves.preload(:student)
     end
 
     def destroy

@@ -4,6 +4,9 @@
 .row
 	.col-12
 		h3.header Leaves
+		= render 'leaves_for_student'
+		
+		h5 = @current_student.name
 		table.table
 			thead
 				tr
