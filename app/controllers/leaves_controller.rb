@@ -11,7 +11,7 @@ class LeavesController < ApplicationController
         if date.on_weekday?
             @leaves.weekday = date.strftime('%A').downcase.to_sym
         else
-            leaves = WorkingDay.where(date: date)
+            working_days = WorkingDay.where(date: date)
             if working_days.empty?
                 flash[:error] = 'Given day is added as working day'
                 render :new
