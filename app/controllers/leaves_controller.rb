@@ -34,7 +34,7 @@ class LeavesController < ApplicationController
             student_id = params[:student][:student_id]
             @current_student = @students.find(student_id)
         end
-        @leaves = @current_student.leaves.preload(:student)
+        @leaves = @current_student.leaves.preload(:student) unless @students.empty?
     end
 
     def destroy

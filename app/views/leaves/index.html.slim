@@ -1,24 +1,25 @@
 .row
 	.col-12
 		h3.header Leaves
-		= render 'leaves_for_student'
-		
-		h5 = @current_student.name
-		table.table
-			thead
-				tr
-					th Student
-					th Date
-					th Reason
-					th Weekday
-					th style="width: 5%"
-			tbody
-				- @leaves.each do |leave|
+		- if @students.present?
+			= render 'leaves_for_student'
+			
+			h5 = @current_student.name
+			table.table
+				thead
 					tr
-						td = leave.student.name
-						td = leave.date.strftime('%B %d, %Y')
-						td = leave.reason
-						td = leave.weekday.humanize
-						td = link_to "✖", leave, data: { method: 'delete', confirm: 'Are you sure?' }
+						th Student
+						th Date
+						th Reason
+						th Weekday
+						th style="width: 5%"
+				tbody
+					- @leaves.each do |leave|
+						tr
+							td = leave.student.name
+							td = leave.date.strftime('%B %d, %Y')
+							td = leave.reason
+							td = leave.weekday.humanize
+							td = link_to "✖", leave, data: { method: 'delete', confirm: 'Are you sure?' }
 
 		= link_to 'Add a new leave', new_leave_url	
