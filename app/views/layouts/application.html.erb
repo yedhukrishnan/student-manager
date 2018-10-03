@@ -7,17 +7,19 @@
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
   <%= render "pages/navbar" %>
   <% if admin_signed_in? %>
   <div class="container main">
-    <div class="row">
+    <div class="row main-row">
       <div class="col-2 sidebar">
         <%= render "pages/sidebar" %>
       </div>
-      <div class="col-10">
+      <div class="col-10 content-area">
         <div class="content">
           <%= yield %>
         </div>
@@ -25,8 +27,10 @@
     </div>
   </div>
   <% else %>
-  <div class="content">
-    <%= yield %>
+  <div class="container main">
+    <div class="content main">
+      <%= yield %>
+    </div>
   </div>
   <% end %>
 
