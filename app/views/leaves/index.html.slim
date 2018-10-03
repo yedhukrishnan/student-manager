@@ -22,4 +22,6 @@
 							td = leave.weekday.humanize
 							td = link_to "✖", leave, data: { method: 'delete', confirm: 'Are you sure?' }
 
-		= link_to 'Add a new leave', new_leave_url	
+			= link_to 'Add a new leave', new_leave_url	
+		- else
+			p First, add students. Then add as many leaves as you want! 😌

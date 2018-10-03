@@ -8,12 +8,12 @@ class LeavesController < ApplicationController
 	def create
 		@leaves = Leave.new(leave_params)
         date = leave_params[:date].to_date
-        if date.on_weekday?
+        if date && date.on_weekday?
             @leaves.weekday = date.strftime('%A').downcase.to_sym
         else
             working_days = WorkingDay.where(date: date)
             if working_days.empty?
-                flash[:error] = 'Given day is added as working day'
+                flash[:error] = 'Given day is not added as working day'
                 render :new
                 return
             end
