@@ -1,0 +1,6 @@
+.flash-message
+  - flash.each do |key, value|
+    - if value.is_a? Array
+  	  .alert.alert-danger = value.join(', ')
+    - else
+      .alert.alert-danger = value
