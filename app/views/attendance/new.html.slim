@@ -3,12 +3,15 @@
 .row.justify-content-center
 	.col-6
 		h3.header Generate Attendance
-		= form_tag :attendance_index, method: :get
-			.form-group
-				= label :attendance, :start_date
-				= text_field :attendance, :start_date, class: 'form-control datepicker', id: 'datepicker'
-			.form-group
-				= label :attendance, :end_date
-				= text_field :attendance, :end_date, class: 'form-control datepicker', id: 'datepicker1'
-			.form-group
-				= submit_tag :submit, value: 'Generate', class: 'btn btn-dark'
+		- if @students_present
+			= form_tag :attendance_index, method: :get
+				.form-group
+					= label :attendance, :start_date
+					= text_field :attendance, :start_date, class: 'form-control datepicker', id: 'datepicker'
+				.form-group
+					= label :attendance, :end_date
+					= text_field :attendance, :end_date, class: 'form-control datepicker', id: 'datepicker1'
+				.form-group
+					= submit_tag :submit, value: 'Generate', class: 'btn btn-dark'
+		- else
+			p No attendance without students! 😌

@@ -22,6 +22,8 @@ class AttendanceController < ApplicationController
 	end
 
 	def new
+		@students_present = current_admin.students.present?
+		puts @students_present
 	end
 
 	private
